@@ -1,6 +1,6 @@
 # Friction System
 
-A research system that finds UK B2B frictions from live signals — job ads, tenders, patents, and forum posts — and produces a shortlist of buildable business ideas for the Innovator Founder application.
+A research system that finds UK B2B frictions from live signals — job ads, tenders, patents, and forum posts — and produces a shortlist of buildable business ideas.
 
 The system is friction-first. It does not start from a list of industries. It finds frictions from live signals, then checks whether the market behind each friction is big enough. Industry is a label, not a filter.
 
