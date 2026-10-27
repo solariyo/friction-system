@@ -956,4 +956,3 @@ Full details — every step, decision, source, model, and verification — live 
 
 Personal project. Not for redistribution.
 
-***************************
