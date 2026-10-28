@@ -15,8 +15,8 @@ Updated after every approved decision.
 | 3 — Sources (API-only) | Done |
 | 4 — Graph skeleton | Done |
 | 5 — Local models | Done |
-| 6 — Fine-tune SLMs | In progress |
-| 7 — Frontier API | Pending |
+| 6 — Fine-tune SLMs | Done |
+| 7 — Frontier API | In Progress |
 | 8 — Scoring + output | Pending |
 | 9 — Human review UI | Pending |
 | 10 — First full run | Pending |
@@ -113,6 +113,18 @@ Not started. Details filled in when reached.
 | 7 — Node 7 (firm count, deferred to Phase 6) | Done |
 | 8 — Test file (13 tests) | Done |
 
+
+### Phase 6 — Fine-tune SLMs
+
+| Step | Status |
+|---|---|
+| 1 — Modal app (qwen_app.py) | Done |
+| 2 — Qwen client (qwen.py) | Done |
+| 3 — Node 4 real extraction | Done |
+| 4 — Test file (14 tests) | Done |
+| 5 — Deployed to Modal | Done |
+| 6 — Live test 57/60 extracted | Done |
+
 ---
 
 ## 3. Decisions Log
@@ -145,7 +157,7 @@ Not started. Details filled in when reached.
 | 2026-10-26 | NOMIS built, tests pass. Live endpoint rejects filter params (406). Deferred. Companies House covers firm counts. |
 | 2026-10-27 | Phase 4 complete. 16-node linear graph runs end-to-end. Node 15 pauses via terminal input(). All nodes are stubs — real logic in Phases 5–9. 125 tests pass. |
 | 2026-10-28 | Phase 5 complete. MiniLM + k-means. Node 1 fetches live Adzuna + Reed. Node 3 fetches live HN + Stack Exchange. Node 5 clusters via k-means. Node 6 dedupes with cosine similarity. Node 7 pending SIC extraction. 138 tests pass. Live run: 60 ads + 29 posts → 17 clusters → 16 frictions. |
-
+| 2026-10-28 | Phase 6 complete. Qwen 2.5 7B on Modal via HTTP endpoint. Node 4 extracts structured fields (role_title, tasks, salary, sic_code, is_manual, friction_hint). Live run: 57/60 extracted (95%). 3 transient timeouts, acceptable. Frictions: 13 from payroll query. |
 
 ## 4. Sources
 
@@ -199,6 +211,8 @@ See `docs/sic-process.md` for the full process, file structure, and re-download 
 | Hacker News reachable | Algolia search returns hits for 8 industries | Live query 2026-10-22 | **Verified 2026-10-22** |
 | Stack Exchange reachable | API v2.3 returns questions across 5 sites | Live query 2026-10-22 | **Verified 2026-10-22** |
 | Graph runs end-to-end | 16 nodes execute, HITL pause works, decision recorded | pytest 2026-10-27 | **Verified 2026-10-27** |
+| Phase 6 live run | 57/60 job ads extracted with Qwen 7B on Modal | Query "payroll" 2026-10-28 | **Verified 2026-10-28** |
+
 
 
 See `docs/ons-process.md` for the ONS purpose, dataset types, priority order, and approval flow.

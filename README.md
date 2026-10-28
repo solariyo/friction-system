@@ -1,6 +1,6 @@
 # Friction System
 
-A research system that finds UK B2B frictions from live signals — job ads, tenders, patents, and forum posts — and produces a shortlist of buildable business ideas.
+A research system that finds UK B2B frictions from live signals — job ads, tenders, patents, and forum posts — and produces a shortlist of buildable business ideas for the Innovator Founder application.
 
 The system is friction-first. It does not start from a list of industries. It finds frictions from live signals, then checks whether the market behind each friction is big enough. Industry is a label, not a filter.
 
@@ -876,7 +876,8 @@ Not built, but possible:
 | 2026-10-22 | README.md updated (source purposes, current state) |
 | 2026-10-22 | Stack Exchange built and verified (5 sites, optional key) |
 | 2026-10-27 | Phase 4 complete. 16-node graph skeleton runs end-to-end. HITL pause at Node 15. 125 tests passing. |
-
+| 2026-10-28 | Phase 5 complete. MiniLM + k-means clustering. Live run: 89 signals → 16 frictions. 138 tests pass. |
+| 2026-10-28 | Phase 6 complete. Qwen 2.5 7B on Modal extracts structured fields. 57/60 success. 13 frictions from payroll. |
 
 
 See `BUILD.md` for full details.
@@ -913,8 +914,8 @@ Full details — every step, decision, source, model, and verification — live 
 | 3 | Sources (API-only) | Done |
 | 4 | Graph skeleton | Done |
 | 5 | Local models | Done |
-| 6 | Fine-tune SLMs | In progress  |
-| 7 | Frontier API | Pending |
+| 6 | Fine-tune SLMs | Done  |
+| 7 | Frontier API | In Progress |
 | 8 | Scoring + output | Pending |
 | 9 | Human review UI | Pending |
 | 10 | First full run | Pending |
