@@ -912,8 +912,8 @@ Full details — every step, decision, source, model, and verification — live 
 | 2 | Adzuna | Done |
 | 3 | Sources (API-only) | Done |
 | 4 | Graph skeleton | Done |
-| 5 | Local models | In Progress |
-| 6 | Fine-tune SLMs | Pending |
+| 5 | Local models | Done |
+| 6 | Fine-tune SLMs | In progress  |
 | 7 | Frontier API | Pending |
 | 8 | Scoring + output | Pending |
 | 9 | Human review UI | Pending |
@@ -955,4 +955,3 @@ Full details — every step, decision, source, model, and verification — live 
 ## License
 
 Personal project. Not for redistribution.
-

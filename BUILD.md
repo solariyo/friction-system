@@ -14,8 +14,8 @@ Updated after every approved decision.
 | 2 — Adzuna | Done |
 | 3 — Sources (API-only) | Done |
 | 4 — Graph skeleton | Done |
-| 5 — Local models | In Progress |
-| 6 — Fine-tune SLMs | Pending |
+| 5 — Local models | Done |
+| 6 — Fine-tune SLMs | In progress |
 | 7 — Frontier API | Pending |
 | 8 — Scoring + output | Pending |
 | 9 — Human review UI | Pending |
@@ -100,6 +100,19 @@ Updated after every approved decision.
 
 Not started. Details filled in when reached.
 
+### Phase 5 — Local models
+
+| Step | Status |
+|---|---|
+| 1 — MiniLM embedding module | Done |
+| 2 — scikit-learn clustering module | Done |
+| 3 — Node 1 real (Adzuna + Reed) | Done |
+| 4 — Node 3 real (HN + Stack Exchange) | Done |
+| 5 — Node 5 real (k-means) | Done |
+| 6 — Node 6 real (dedupe) | Done |
+| 7 — Node 7 (firm count, deferred to Phase 6) | Done |
+| 8 — Test file (13 tests) | Done |
+
 ---
 
 ## 3. Decisions Log
@@ -131,7 +144,7 @@ Not started. Details filled in when reached.
 | 2026-10-22 | Stack Exchange built. Searches 5 sites: workplace, freelancing, pm, serverfault, softwareengineering. Optional API key. Industry-agnostic. |
 | 2026-10-26 | NOMIS built, tests pass. Live endpoint rejects filter params (406). Deferred. Companies House covers firm counts. |
 | 2026-10-27 | Phase 4 complete. 16-node linear graph runs end-to-end. Node 15 pauses via terminal input(). All nodes are stubs — real logic in Phases 5–9. 125 tests pass. |
-
+| 2026-10-28 | Phase 5 complete. MiniLM + k-means. Node 1 fetches live Adzuna + Reed. Node 3 fetches live HN + Stack Exchange. Node 5 clusters via k-means. Node 6 dedupes with cosine similarity. Node 7 pending SIC extraction. 138 tests pass. Live run: 60 ads + 29 posts → 17 clusters → 16 frictions. |
 
 
 ## 4. Sources
@@ -222,5 +235,3 @@ Manual CSV layer deferred to business plan phase
 - No auto-learning
 - No paid tools without approval
 - Verification rule: every number traces to source
-
-******************************
