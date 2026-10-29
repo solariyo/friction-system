@@ -16,8 +16,8 @@ Updated after every approved decision.
 | 4 — Graph skeleton | Done |
 | 5 — Local models | Done |
 | 6 — Fine-tune SLMs | Done |
-| 7 — Frontier API | In Progress |
-| 8 — Scoring + output | Pending |
+| 7 — Frontier API | Done |
+| 8 — Scoring + output | In progress |
 | 9 — Human review UI | Pending |
 | 10 — First full run | Pending |
 | 11 — Refine | Pending |
@@ -125,6 +125,18 @@ Not started. Details filled in when reached.
 | 5 — Deployed to Modal | Done |
 | 6 — Live test 57/60 extracted | Done |
 
+### Phase 7 — Frontier API
+
+| Step | Status |
+|---|---|
+| 1 — Gemini client | Done (fallback) |
+| 2 — Claude client | Done (fallback) |
+| 3 — Groq client | Done (active) |
+| 4 — Frontier router | Done |
+| 5 — Nodes 5, 9, 10, 11, 12 updated | Done |
+| 6 — Test file (16 tests) | Done |
+| 7 — Live run verified | Done |
+
 ---
 
 ## 3. Decisions Log
@@ -158,7 +170,7 @@ Not started. Details filled in when reached.
 | 2026-10-27 | Phase 4 complete. 16-node linear graph runs end-to-end. Node 15 pauses via terminal input(). All nodes are stubs — real logic in Phases 5–9. 125 tests pass. |
 | 2026-10-28 | Phase 5 complete. MiniLM + k-means. Node 1 fetches live Adzuna + Reed. Node 3 fetches live HN + Stack Exchange. Node 5 clusters via k-means. Node 6 dedupes with cosine similarity. Node 7 pending SIC extraction. 138 tests pass. Live run: 60 ads + 29 posts → 17 clusters → 16 frictions. |
 | 2026-10-28 | Phase 6 complete. Qwen 2.5 7B on Modal via HTTP endpoint. Node 4 extracts structured fields (role_title, tasks, salary, sic_code, is_manual, friction_hint). Live run: 57/60 extracted (95%). 3 transient timeouts, acceptable. Frictions: 13 from payroll query. |
-
+| 2026-10-29 | Phase 7 complete. Frontier router supports Groq (free, active), Gemini (free, fallback), Claude (paid, upgrade). Active model: openai/gpt-oss-120b. Run produces 14 real frictions with IP, patent, competitor, and proof analysis. Groq reasoning model needs generous max_tokens (350-550) to allow 30-50 reasoning tokens. |
 ## 4. Sources
 
 | Source | Type | Cost | Status | Notes |
@@ -212,6 +224,9 @@ See `docs/sic-process.md` for the full process, file structure, and re-download 
 | Stack Exchange reachable | API v2.3 returns questions across 5 sites | Live query 2026-10-22 | **Verified 2026-10-22** |
 | Graph runs end-to-end | 16 nodes execute, HITL pause works, decision recorded | pytest 2026-10-27 | **Verified 2026-10-27** |
 | Phase 6 live run | 57/60 job ads extracted with Qwen 7B on Modal | Query "payroll" 2026-10-28 | **Verified 2026-10-28** |
+| Phase 7 live run | 14 frictions with real sentences, IP, patents, proofs | Query "payroll" 2026-10-29 | **Verified 2026-10-29** |
+
+
 
 
 

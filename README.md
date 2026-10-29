@@ -647,16 +647,15 @@ The 16-node graph from section 2, mapped to the model that powers each node:
 | 1 | Scrape job ads | — (API only) |
 | 2 | Scrape reviews | — (not active) |
 | 3 | Scrape forums | — (API only) |
-| 4 | Extract fields | Qwen 2.5 7B Instruct |
+| Node | Task | Model |
+|---|---|---|
+| 4 | Extract fields | Qwen 2.5 7B (Modal) |
 | 5 | Cluster | MiniLM + scikit-learn |
-| 5 | Synthesize friction | Claude Sonnet 5 |
-| 6 | Deduplicate | MiniLM |
-| 7 | Count firms | — (Companies House) |
-| 8 | Regulation classify | Qwen 2.5 3B Instruct |
-| 9 | IP assess | Claude Sonnet 5 |
-| 10 | Patent landscape | Claude Sonnet 5 (reads EPO results) |
-| 11 | Competitor judge | Qwen 2.5 7B + Claude Sonnet 5 |
-| 12 | Attach proofs | Claude Sonnet 5 |
+| 5 | Synthesize friction | **Groq gpt-oss-120b** (free) / Gemini / Claude |
+| 9 | IP assess | Same frontier |
+| 10 | Patent landscape | Same frontier (reads EPO) |
+| 11 | Competitor judge | Same frontier |
+| 12 | Attach proofs | Same frontier |
 | 13 | Compute cost | — (arithmetic) |
 | 14 | Score | — (weighted formula) |
 | 15 | Human review | — (human) |
@@ -878,6 +877,7 @@ Not built, but possible:
 | 2026-10-27 | Phase 4 complete. 16-node graph skeleton runs end-to-end. HITL pause at Node 15. 125 tests passing. |
 | 2026-10-28 | Phase 5 complete. MiniLM + k-means clustering. Live run: 89 signals → 16 frictions. 138 tests pass. |
 | 2026-10-28 | Phase 6 complete. Qwen 2.5 7B on Modal extracts structured fields. 57/60 success. 13 frictions from payroll. |
+| 2026-10-29 | Phase 7 complete. Frontier router (Groq active, Gemini/Claude alternative). 14 real frictions with full analysis. |
 
 
 See `BUILD.md` for full details.
@@ -915,8 +915,8 @@ Full details — every step, decision, source, model, and verification — live 
 | 4 | Graph skeleton | Done |
 | 5 | Local models | Done |
 | 6 | Fine-tune SLMs | Done  |
-| 7 | Frontier API | In Progress |
-| 8 | Scoring + output | Pending |
+| 7 | Frontier API | Done |
+| 8 | Scoring + output | In progress |
 | 9 | Human review UI | Pending |
 | 10 | First full run | Pending |
 | 11 | Refine | Pending |
