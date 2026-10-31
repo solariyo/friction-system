@@ -644,18 +644,13 @@ The 16-node graph from section 2, mapped to the model that powers each node:
 
 | Node | Task | Model |
 |---|---|---|
-| 1 | Scrape job ads | — (API only) |
-| 2 | Scrape reviews | — (not active) |
-| 3 | Scrape forums | — (API only) |
-| Node | Task | Model |
-|---|---|---|
 | 4 | Extract fields | Qwen 2.5 7B (Modal) |
 | 5 | Cluster | MiniLM + scikit-learn |
-| 5 | Synthesize friction | **Groq gpt-oss-120b** (free) / Gemini / Claude |
-| 9 | IP assess | Same frontier |
-| 10 | Patent landscape | Same frontier (reads EPO) |
-| 11 | Competitor judge | Same frontier |
-| 12 | Attach proofs | Same frontier |
+| 5 | Synthesize friction | Groq gpt-oss-120b (free, active) |
+| 9 | IP assess | Groq gpt-oss-120b |
+| 10 | Patent landscape | Groq gpt-oss-120b (reads EPO) |
+| 11 | Competitor judge | Groq gpt-oss-120b |
+| 12 | Attach proofs | Groq gpt-oss-120b |
 | 13 | Compute cost | — (arithmetic) |
 | 14 | Score | — (weighted formula) |
 | 15 | Human review | — (human) |
@@ -878,6 +873,15 @@ Not built, but possible:
 | 2026-10-28 | Phase 5 complete. MiniLM + k-means clustering. Live run: 89 signals → 16 frictions. 138 tests pass. |
 | 2026-10-28 | Phase 6 complete. Qwen 2.5 7B on Modal extracts structured fields. 57/60 success. 13 frictions from payroll. |
 | 2026-10-29 | Phase 7 complete. Frontier router (Groq active, Gemini/Claude alternative). 14 real frictions with full analysis. |
+| 2026-10-30 | Phase 8 complete. Real scoring, cost, output. 4 distinct frictions, top score 4.05/10. 184 tests. |
+git add -A
+git commit -m "Phase 8 complete: scoring, cost, output, DB save, 184 tests"
+| 2026-10-30 | Phase 8 complete. Scoring + cost + output. |
+| 2026-10-30 | Phase 9 complete. Streamlit HITL flow. |
+| 2026-10-30 | Phase 10 complete. First real run: "care home", 420 job ads → 9 frictions. |
+| 2026-10-31 | Phase 11 Day 2: real Serper competitor search in Node 11, keyword extraction, multi-plan business plan generation (Word + Excel), two-stage HITL resume. |
+
+
 
 
 See `BUILD.md` for full details.
@@ -904,6 +908,104 @@ See `BUILD.md` for full details.
 
 Full details — every step, decision, source, model, and verification — live in `BUILD.md`.
 
+## 26. Phase 11 — Roadmap
+
+### Prerequisites
+
+- Crawl4AI (website scraping for contacts)
+- python-docx + openpyxl (Word + Excel generation)
+- Excel templates in `templates/`
+
+### Phase 11A — Competitor search + business plan ✅ COMPLETE
+
+- Add business section generation to all frontier clients (Groq, Claude, Gemini)
+- `frontier.list_available_providers()` with cost + availability status
+- `business_plan_generator.py` — narrative sections 1–10
+- `excel_generator.py` — Excel template fill (service or goods)
+- `word_generator.py` — Markdown → Word
+- Node 11 rewrite: Serper search + LLM keyword extraction + real competitor judgment
+- Node 15.5 HITL gate: model choice, product type, output scope
+- Node 16.5 orchestrator
+- Full graph wiring
+
+**Output:** `business_plan.docx`, `business_plan.md`, `financials_full.xlsx`, `financials_summary.xlsx`
+
+### Phase 11B — Lead list with contacts
+
+- Node 15.6 HITL gate: "build lead list?"
+- Node 16.6 lead list orchestrator
+- `sources/crawl4ai.py` — website → clean Markdown
+- `sources/lead_extractor.py` — parse phone, email, address
+- Companies House extension: search by name, get officers
+- Lead list v1 (basic) + v2 (full contacts)
+
+**Output:** `leads_friction_<N>.csv`, `leads_friction_<N>.md` — per approved friction
+
+### Phase 11C — Quality additions
+
+- Sample company quotes per friction
+- Confidence flag (High/Medium/Low)
+- Friction history tracking across runs
+- Innovator Founder-aligned business plan template (19 sections enforced)
+- Comparison view (multi-query analysis)
+- Serper redirect URL resolution
+
+### Phase 11D — Reliability
+
+- Retry logic for failed Crawl4AI fetches
+- Cache Crawl4AI results
+- Handle missing fields gracefully
+- Email validation
+- Lead scoring
+- CRM export format
+
+### Phase 11E — Optional polish
+
+- Tavily second search source
+- Real-time job ad monitoring
+- Email enrichment (Hunter.io)
+- Auto-generate pitch deck
+- Friction scoring v2 (buildability)
+- Delete gemini.py or migrate to google.genai
+
+### Business plan structure — 19 sections
+
+Narrative (1–10):
+1. Executive Summary
+2. Products and/or Services
+3. Innovation, Viability, Scalability (Innovator Founder-critical)
+4. R&D activity
+5. Market Analysis
+6. Competitor Analysis (4–5 competitors, feature table)
+7. Staff Profile and Recruitment
+8. Marketing and Sales
+9. SWOT Analysis
+10. Investment Strategy and Funding
+
+Financials (11–18):
+11. Revenue and Cost of Sales (client-based)
+12. Cash Flow Forecast
+13. Annual P&L
+14. Balance Sheet
+15. Stock Levels (or N/A)
+16. Marketing Expenditure
+17. Fixed Asset Schedule
+18. Staff Costs
+
+Appendices (19):
+19. CVs, letters, evidence, lead list
+
+### Model selection
+
+Node 15.5 HITL shows:
+- **Groq gpt-oss-120b** — free, 85/100, fast
+- **Claude Sonnet 4.5** — ~$0.02–0.10/run, 95/100 (if API key + credit)
+- **Gemini 3.8 Flash** — free, 80/100, fallback
+
+User picks per section (critical sections 3 and 10 can use different provider than rest).
+
+Fallback chain: chosen → Groq → Gemini → placeholder.
+
 ### Phase status
 
 | Phase | Name | Status |
@@ -919,7 +1021,7 @@ Full details — every step, decision, source, model, and verification — live 
 | 8 | Scoring + output | In progress |
 | 9 | Human review UI | Pending |
 | 10 | First full run | Pending |
-| 11 | Refine | Pending |
+| 11 | Refine | In progress |
 
 ### Phase 3 — Sources
 
@@ -946,7 +1048,7 @@ Full details — every step, decision, source, model, and verification — live 
 |---|---|
 | Project version | 0.1.0 |
 | Build phase | 3 |
-| Last updated | 2026-10-22 |
+| Last updated | 2026-10-31 |
 | Modal workspace | heartofchr |
 | Project root | C:\Users\T\friction-system |
 | Scratch | C:\Users\T\friction-system-sub |

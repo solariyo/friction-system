@@ -17,10 +17,10 @@ Updated after every approved decision.
 | 5 — Local models | Done |
 | 6 — Fine-tune SLMs | Done |
 | 7 — Frontier API | Done |
-| 8 — Scoring + output | In progress |
-| 9 — Human review UI | Pending |
-| 10 — First full run | Pending |
-| 11 — Refine | Pending |
+| 8 — Scoring + output | Done |
+| 9 — Human review UI | Done |
+| 10 — First full run | Done |
+| 11 — Refine | In Progress |
 
 ---
 
@@ -96,7 +96,101 @@ Updated after every approved decision.
 | 5 — test_graph.py (4 tests) | Done |
 | 6 — HITL pause at Node 15 | Done |
 
-### Phases 4–11
+### Phase 11 — Refine and enhance
+
+**Status:** In progress
+
+#### Prerequisites
+
+| Step | Status |
+|---|---|
+| 1 — Install Crawl4AI | Pending |
+| 2 — Install python-docx + openpyxl | Pending |
+| 3 — Copy Excel templates to `templates/` | Pending |
+| 4 — Verify installs | Pending |
+
+#### Phase 11A — Competitor search + business plan (highest value)
+
+| Step | Status |
+|---|---|
+| 5 — Add generate_business_section() to groq.py | Done |
+| 6 — Add to claude.py | Done |
+| 7 — Add to gemini.py | Done |
+| 8 — frontier.list_available_providers() with cost/status | Done |
+| 9 — business_plan_generator.py (narrative) | Done |
+| 10 — excel_generator.py (template fill) | Done |
+| 11 — word_generator.py (Markdown → Word) | Done |
+| 12 — Node 11 rewrite: Serper + LLM keyword extraction | Done |
+| 13 — Node 15.5 HITL gate (model + type + scope) | Done |
+| 14 — Node 16.5 orchestrator | Done |
+| 15 — Graph wiring for Nodes 15.5, 16.5 | Done (two-stage resume) |
+| 16 — resume.py update | Done |
+| 17 — config/settings.yaml business_plan block | Done |
+| 18 — tests/test_business_plan.py | Done |
+
+
+#### Day 2 — Node 11 + Business Plan (complete)
+
+| Component | Status |
+|---|---|
+| keyword_extraction.py (LLM + rule fallback) | Done |
+| serper_filter.py (product filtering) | Done |
+| Node 11 rewrite (real Serper search) | Done |
+| business_plan_generator.py (10 sections) | Done |
+| word_generator.py (md → docx) | Done |
+| excel_generator.py (template fill, full + summary) | Done |
+| Node 15.5 business plan gate | Done |
+| Node 16.5 orchestrator (multi-plan) | Done |
+| Two-stage resume (friction → business plan) | Done |
+| Streamlit Business Plan tab | Done |
+| Live test: 3 plans generated | Done |
+
+
+#### Phase 11B — Lead list with contacts
+
+| Step | Status |
+|---|---|
+| 19 — Node 15.6 HITL gate | Pending |
+| 20 — Node 16.6 lead list orchestrator | Pending |
+| 21 — sources/crawl4ai.py | Pending |
+| 22 — sources/lead_extractor.py | Pending |
+| 23 — Companies House search_by_name + officers | Pending |
+| 24 — Lead list v1 (basic) | Pending |
+| 25 — Lead list v2 (full contacts) | Pending |
+| 26 — tests/test_lead_list.py | Pending |
+
+#### Phase 11C — Quality additions
+
+| Step | Status |
+|---|---|
+| 27 — Sample company quotes per friction | Pending |
+| 28 — Confidence flag per friction | Pending |
+| 29 — Friction history across runs | Pending |
+| 30 — Founder Innovation -aligned template enforcement | Pending |
+| 31 — Comparison view (multi-query) | Pending |
+| 32 — Serper redirect URL resolution | Pending |
+
+#### Phase 11D — Reliability
+
+| Step | Status |
+|---|---|
+| 33 — Retry logic for Crawl4AI | Pending |
+| 34 — Cache Crawl4AI results | Pending |
+| 35 — Missing field handling | Pending |
+| 36 — Email validation | Pending |
+| 37 — Lead scoring | Pending |
+| 38 — CRM export format | Pending |
+
+#### Phase 11E — Optional polish
+
+| Step | Status |
+|---|---|
+| 39 — Tavily second search source | Pending |
+| 40 — Real-time job ad monitoring | Pending |
+| 41 — Email enrichment (Hunter.io) | Pending |
+| 42 — Auto-generate pitch deck | Pending |
+| 43 — Friction scoring v2 (buildability) | Pending |
+| 44 — Delete gemini.py or migrate to google.genai | Pending |
 
 Not started. Details filled in when reached.
 
@@ -137,6 +231,54 @@ Not started. Details filled in when reached.
 | 6 — Test file (16 tests) | Done |
 | 7 — Live run verified | Done |
 
+
+### Phase 8 — Scoring + output
+
+| Step | Status |
+|---|---|
+| 1 — Node 13 real cost | Done |
+| 2 — Node 14 weighted scoring | Done |
+| 3 — Node 16 output (JSON + MD) | Done |
+| 4 — shortlists DB table | Done |
+| 5 — Clustering config (k=10, dedupe=0.80) | Done |
+| 6 — Test file (17 tests) | Done |
+
+### Phase 9 — Human review UI
+
+| Step | Status |
+|---|---|
+| 1 — Node 15 file-based pause | Done |
+| 2 — Streamlit review_app.py | Done |
+| 3 — decisions.json per run | Done |
+| 4 — resume.py CLI | Done |
+| 5 — Node 16 early exit if paused | Done |
+| 6 — Live test: 2 runs paused, reviewed, resumed | Done |
+
+### Phase 10 — First full run
+
+| Step | Status |
+|---|---|
+| 1 — Real query "care home", 3 pages | Done |
+| 2 — 420 job ads + 181 forum posts | Done |
+| 3 — 420/420 extracted (0 failed) | Done |
+| 4 — 10 clusters → 9 frictions | Done |
+| 5 — Streamlit review + resume | Done |
+| 6 — Shortlist output | Done |
+
+
+
+### Phase 8 — Scoring + output
+
+| Step | Status |
+|---|---|
+| 1 — Node 13 real cost | Done |
+| 2 — Node 14 real scoring | Done |
+| 3 — Node 16 output (JSON + MD) | Done |
+| 4 — DB save to shortlists table | Done (after fix) |
+| 5 — Clustering config (k=10, dedupe=0.8) | Done |
+| 6 — Test file (17 tests) | Done |
+| 7 — Live run: 4 distinct frictions | Done |
+
 ---
 
 ## 3. Decisions Log
@@ -171,6 +313,19 @@ Not started. Details filled in when reached.
 | 2026-10-28 | Phase 5 complete. MiniLM + k-means. Node 1 fetches live Adzuna + Reed. Node 3 fetches live HN + Stack Exchange. Node 5 clusters via k-means. Node 6 dedupes with cosine similarity. Node 7 pending SIC extraction. 138 tests pass. Live run: 60 ads + 29 posts → 17 clusters → 16 frictions. |
 | 2026-10-28 | Phase 6 complete. Qwen 2.5 7B on Modal via HTTP endpoint. Node 4 extracts structured fields (role_title, tasks, salary, sic_code, is_manual, friction_hint). Live run: 57/60 extracted (95%). 3 transient timeouts, acceptable. Frictions: 13 from payroll query. |
 | 2026-10-29 | Phase 7 complete. Frontier router supports Groq (free, active), Gemini (free, fallback), Claude (paid, upgrade). Active model: openai/gpt-oss-120b. Run produces 14 real frictions with IP, patent, competitor, and proof analysis. Groq reasoning model needs generous max_tokens (350-550) to allow 30-50 reasoning tokens. |
+| 2026-10-30 | Phase 8 complete. Scoring from weights, cost from median salary £34k. Output: shortlist.json + shortlist.md + DB. Clustering tuned: k=10, dedupe=0.8. Friction repetition fixed (14 → 4). Top friction scored 4.05/10. |
+| 2026-10-30 | Phase 8 complete. Cost formula B: labour_cost = median_salary × 0.20 × people_per_firm. Price 15–25% capture. Clustering tuned: k=10, dedupe=0.80. Output: shortlist.json + shortlist.md + DB. |
+| 2026-10-30 | Phase 9 complete. File-based HITL. Node 15 pauses, Streamlit reviews, resume.py continues. |
+| 2026-10-30 | Phase 10 complete. First real run "care home", 420 job ads, 420/420 extracted, 9 frictions, top score 4.91. Median care salary £31,200. |
+| 2026-10-30 | Gemini SDK deprecated warning noted. Deferred to Phase 11. Likely action: delete gemini.py and rely on Groq + Claude only. |
+| 2026-10-31 | Business plan output format: Word (.docx) + Excel (.xlsx) + Markdown. Markdown for source, Word for investors/Innovator Founder submission, Excel for financials. |
+| 2026-10-31 | Business plan template: ask user at generation time (service vs goods) with idea summary shown. Both full and summary Excel outputs. |
+| 2026-10-31 | Business plan model selection: HITL at Node 15.5. User chooses provider per section. Groq (free) default, Claude (paid) available if key present. |
+| 2026-10-31 | Node 11 rewrite: LLM keyword extraction → Serper search → LLM judgment. Real competitors required for Innovator Founder (4–5 minimum). |
+| 2026-10-31 | Lead list v1 + v2: per approved friction, per company. Uses Companies House + Serper + Crawl4AI. Full contacts. |
+| 2026-10-31 | Phase 11 Day 2 complete. Node 11 rewritten with real Serper search + LLM keyword extraction + product filter. Business plan generation (10 sections) + Word + Excel per plan. Multi-plan support (per-friction folders). Two-stage HITL resume: stage 1 (friction review → shortlist + business plan gate), stage 2 (business plan selection → generate). 208 tests passing. Live: care home query generated 3 plans (ChefCare Connect 1, CareEase Solutions 2, CareSync UK 6). |
+
+
 ## 4. Sources
 
 | Source | Type | Cost | Status | Notes |
@@ -225,8 +380,12 @@ See `docs/sic-process.md` for the full process, file structure, and re-download 
 | Graph runs end-to-end | 16 nodes execute, HITL pause works, decision recorded | pytest 2026-10-27 | **Verified 2026-10-27** |
 | Phase 6 live run | 57/60 job ads extracted with Qwen 7B on Modal | Query "payroll" 2026-10-28 | **Verified 2026-10-28** |
 | Phase 7 live run | 14 frictions with real sentences, IP, patents, proofs | Query "payroll" 2026-10-29 | **Verified 2026-10-29** |
-
-
+| Phase 8 live run | 4 distinct frictions, scored, written to runs/ | Query "payroll" 2026-10-30 | **Verified 2026-10-30** |
+| Phase 8 live run | 5 frictions, scored, output to runs/ | Query "payroll" 2026-10-30 | **Verified 2026-10-30** |
+| Phase 9 HITL flow | Graph pauses, Streamlit review, resume completes | 2 runs tested 2026-10-30 | **Verified 2026-10-30** |
+| Phase 10 care home run | 420 job ads → 9 frictions, top score 4.91 | Query "care home" 2026-10-30 | **Verified 2026-10-30** |
+| Phase 11 Node 11 | Real Serper search returns product competitors | 10 frictions, live query 2026-10-31 | **Verified 2026-10-31** |
+| Phase 11 business plan | 3 full plans generated (narrative + Word + Excel) | care home run 2026-10-31 | **Verified 2026-10-31** |
 
 
 
